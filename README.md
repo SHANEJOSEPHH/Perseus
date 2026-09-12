@@ -76,14 +76,14 @@ The Flask server will start. Open this address in your web browser:
 ### Project Documentation
 For Software:
 
-# Screenshots (Add at least 3)
-! main-interface.png (Main Interface)
+# Screenshots
+![Main Interface](screenshots/main-interface.png)
 *The main OVERTHINKING.AI interface where users enter a situation they are overthinking*
 
-! ai-analysis.png (AI Analysis)
+![AI Analysis](screenshots/ai-analysis.png)
 *The system generates five possible explanations using the local AI model and assigns an AI weight to each interpretation.*
 
-! final-verdict.png (Final Verdict)
+![Final Verdict](screenshots/final-verdict.png)
 *The final screen displays the Overthinking Score and an evidence-based verdict based on the available information.*
 
 # Diagrams
