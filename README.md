@@ -11,8 +11,6 @@
 
 ### Team Members
 - Team Lead: [Shane Joseph] - [AISAT]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
 
 ### Project Description
 [OVERTHINKING.AI is a local AI-powered simulator that analyzes everyday situations people tend to overthink. It generates multiple possible explanations, calculates an Overthinking Score, and gives a final evidence-based verdict.]
@@ -59,15 +57,10 @@ Git & GitHub — Version control and project hosting
 Command Prompt / Terminal — Installing dependencies and running the application
 Web Browser — Testing and interacting with the simulator]
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
-
 ### Implementation
 For Software:
 # Installation
-[git clone [YOUR_GITHUB_REPOSITORY_LINK]
+[git clone [https://github.com/SHANEJOSEPHH/Perseus]
 cd overthinking-simulator]
 [pip install flask requests]
 [ollama pull qwen2.5-coder:3b]
@@ -81,66 +74,17 @@ Start Ollama before starting the Flask application.
 For Software:
 
 # Screenshots (Add at least 3)
-![screenshots/main-interface.png](Main Interface)
+![main-interface.png](Main Interface)
 *The main OVERTHINKING.AI interface where users enter a situation they are overthinking*
 
-![screenshots/ai-analysis.png](AI Analysis)
+![ai-analysis.png](AI Analysis)
 *The system generates five possible explanations using the local AI model and assigns an AI weight to each interpretation.*
 
-![screenshots/final-verdict.png](Final Verdict)
+![final-verdict.png](Final Verdict)
 *The final screen displays the Overthinking Score and an evidence-based verdict based on the available information.*
 
 # Diagrams
-![Workflow](                            User Input
-    ↓
-Flask Backend
-    ↓
-Ollama Local AI
-    ↓
-Qwen 2.5 Coder 3B
-    ↓
-5 Possible Explanations
-    ↓
-Evidence & Contradiction Validation
-    ↓
-Overthinking Score
-    ↓
-Final Verdict
-    ↓
-Results displayed in the Web Interface)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
-### Project Demo
-# Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
-
-## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+![Workflow](User Input➡️Flask Backend➡️Ollama Local AI➡️Qwen 2.5 Coder 3B➡️5 Possible Explanations➡️Evidence & Contradiction Validation➡️Overthinking Score➡️Final Verdict➡️Results displayed in the Web Interface)
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
