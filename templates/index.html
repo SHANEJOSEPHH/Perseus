@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>OVERTHINKING.AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="background"></div>
+
+
+    <main class="container">
+
+
+        <!-- HERO -->
+
+        <header class="hero">
+
+            <div class="logo">
+
+                <span class="brain">
+                    🧠
+                </span>
+
+                <span>
+                    OVERTHINKING<span class="ai">.AI</span>
+                </span>
+
+            </div>
+
+
+            <p class="tagline">
+                Advanced technology for problems that didn't need technology.
+            </p>
+
+
+            <div class="ai-status">
+
+                <span class="status-dot"></span>
+
+                LOCAL AI ONLINE
+
+            </div>
+
+        </header>
+
+
+
+        <!-- INPUT -->
+
+        <section class="input-card">
+
+            <div class="section-label">
+                WHAT HAPPENED?
+            </div>
+
+
+            <textarea
+                id="situation"
+                maxlength="1000"
+                placeholder="My teacher looked at me and smiled..."
+            ></textarea>
+
+
+            <div class="input-footer">
+
+                <span id="characterCount">
+                    0 / 1000
+                </span>
+
+
+                <button
+                    id="analyzeButton"
+                    onclick="analyzeSituation()"
+                >
+
+                    <span id="buttonText">
+                        OVERTHINK THIS
+                    </span>
+
+                    <span
+                        id="loader"
+                        class="loader hidden"
+                    ></span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LOADING -->
+
+        <section
+            id="loadingCard"
+            class="loading-card hidden"
+        >
+
+            <div class="loading-brain">
+                🧠
+            </div>
+
+
+            <div>
+
+                <h3>
+                    AI is overthinking...
+                </h3>
+
+                <p id="loadingText">
+                    Examining the situation unnecessarily.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RESULTS -->
+
+        <section
+            id="result"
+            class="result hidden"
+        >
+
+
+            <!-- SCORE -->
+
+            <div class="score-card">
+
+                <div class="score-title">
+                    OVERTHINKING SCORE
+                </div>
+
+
+                <div class="score-number">
+
+                    <span id="score">
+                        0
+                    </span>
+
+                    <span class="percent">
+                        %
+                    </span>
+
+                </div>
+
+
+                <div class="score-bar">
+
+                    <div
+                        id="scoreFill"
+                        class="score-fill"
+                    ></div>
+
+                </div>
+
+
+                <div
+                    id="level"
+                    class="level"
+                >
+                    SLIGHTLY OVERTHINKING
+                </div>
+
+            </div>
+
+
+
+            <!-- INTERPRETATIONS -->
+
+            <div class="interpretations-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            AI ANALYSIS
+                        </span>
+
+                        <h2>
+                            Possible explanations
+                        </h2>
+
+                    </div>
+
+
+                    <div class="model-badge">
+                        🤖 LOCAL AI
+                    </div>
+
+                </div>
+
+
+                <div id="interpretations"></div>
+
+            </div>
+
+
+
+            <!-- VERDICT -->
+
+            <div class="verdict-card">
+
+                <div class="verdict-icon">
+                    ⚖️
+                </div>
+
+
+                <div>
+
+                    <div class="eyebrow">
+                        FINAL VERDICT
+                    </div>
+
+
+                    <p id="verdict"></p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- METADATA -->
+
+            <div class="metadata">
+
+                <span>
+                    ⚡ Analysis completed in
+                    <strong id="time">0</strong>s
+                </span>
+
+
+                <span>
+                    •
+                </span>
+
+
+                <span>
+                    Powered by
+                    <strong id="model">
+                        Ollama
+                    </strong>
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ERROR -->
+
+        <div
+            id="errorCard"
+            class="error-card hidden"
+        >
+
+            <span>
+                ⚠️
+            </span>
+
+            <p id="errorText"></p>
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <p>
+                No situation is too insignificant to analyze.
+            </p>
+
+            <span>
+                OVERTHINKING.AI • Probably unnecessary. Definitely advanced.
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        // ============================================
+        // CHARACTER COUNTER
+        // ============================================
+
+        const situationInput =
+            document.getElementById(
+                "situation"
+            );
+
+
+        const characterCount =
+            document.getElementById(
+                "characterCount"
+            );
+
+
+        situationInput.addEventListener(
+            "input",
+            () => {
+
+                characterCount.textContent =
+                    `${situationInput.value.length} / 1000`;
+
+            }
+        );
+
+
+
+        // ============================================
+        // CTRL + ENTER
+        // ============================================
+
+        situationInput.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Enter" &&
+                    (event.ctrlKey || event.metaKey)
+                ) {
+
+                    analyzeSituation();
+
+                }
+
+            }
+        );
+
+
+
+        // ============================================
+        // LOADING MESSAGES
+        // ============================================
+
+        const loadingMessages = [
+
+            "Examining the situation unnecessarily.",
+
+            "Considering several completely reasonable possibilities.",
+
+            "Looking for hidden meaning.",
+
+            "Checking whether this actually means anything.",
+
+            "Overanalyzing the available evidence.",
+
+            "This could have been a normal interaction.",
+
+            "Unfortunately, we're investigating it anyway."
+
+        ];
+
+
+
+        // ============================================
+        // MAIN ANALYSIS
+        // ============================================
+
+        async function analyzeSituation() {
+
+            const situation =
+                situationInput.value.trim();
+
+
+            if (!situation) {
+
+                showError(
+                    "Please give the AI something to overthink."
+                );
+
+                return;
+
+            }
+
+
+            hideError();
+
+            setLoading(true);
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/analyze",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                situation: situation
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.error ||
+                        "Something went wrong."
+                    );
+
+                }
+
+
+                displayResult(data);
+
+            }
+
+
+            catch (error) {
+
+                showError(
+                    error.message ||
+                    "The AI has experienced an existential crisis."
+                );
+
+            }
+
+
+            finally {
+
+                setLoading(false);
+
+            }
+
+        }
+
+
+
+        // ============================================
+        // LOADING STATE
+        // ============================================
+
+        function setLoading(isLoading) {
+
+            const button =
+                document.getElementById(
+                    "analyzeButton"
+                );
+
+
+            const buttonText =
+                document.getElementById(
+                    "buttonText"
+                );
+
+
+            const loader =
+                document.getElementById(
+                    "loader"
+                );
+
+
+            const loadingCard =
+                document.getElementById(
+                    "loadingCard"
+                );
+
+
+            const loadingText =
+                document.getElementById(
+                    "loadingText"
+                );
+
+
+            if (isLoading) {
+
+                button.disabled = true;
+
+                buttonText.textContent =
+                    "THINKING...";
+
+                loader.classList.remove(
+                    "hidden"
+                );
+
+                loadingCard.classList.remove(
+                    "hidden"
+                );
+
+
+                let index = 0;
+
+
+                loadingText.textContent =
+                    loadingMessages[index];
+
+
+                window.loadingInterval =
+                    setInterval(
+                        () => {
+
+                            index =
+                                (
+                                    index + 1
+                                ) %
+                                loadingMessages.length;
+
+
+                            loadingText.textContent =
+                                loadingMessages[index];
+
+                        },
+                        1800
+                    );
+
+            }
+
+
+            else {
+
+                button.disabled = false;
+
+                buttonText.textContent =
+                    "OVERTHINK THIS";
+
+                loader.classList.add(
+                    "hidden"
+                );
+
+                loadingCard.classList.add(
+                    "hidden"
+                );
+
+
+                clearInterval(
+                    window.loadingInterval
+                );
+
+            }
+
+        }
+
+
+
+        // ============================================
+        // DISPLAY RESULT
+        // ============================================
+
+       function displayResult(data) {
+
+    hideError();
+
+    const result =
+        document.getElementById("result");
+
+    result.classList.remove("hidden");
+
+
+    // ============================================
+    // SCORE
+    // ============================================
+
+    animateScore(
+        Number(data.score) || 0
+    );
+
+
+    // ============================================
+    // LEVEL
+    // ============================================
+
+    document.getElementById("level").textContent =
+        data.level || "SLIGHTLY OVERTHINKING";
+
+
+    // ============================================
+    // INTERPRETATIONS
+    // ============================================
+
+    const container =
+        document.getElementById("interpretations");
+
+    container.innerHTML = "";
+
+
+    // Support both old and new backend formats.
+    const items =
+        data.results ||
+        data.interpretations ||
+        [];
+
+
+    items.forEach((item, index) => {
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "interpretation";
+
+
+        // --------------------------------------------
+        // GET TEXT
+        // --------------------------------------------
+
+        const text =
+            item.text ||
+            item.reason ||
+            item.title ||
+            "The AI couldn't explain this one.";
+
+
+        // --------------------------------------------
+        // GET CONFIDENCE / WEIGHT
+        // --------------------------------------------
+
+        const confidence =
+            Number(
+                item.confidence ??
+                item.probability ??
+                item.weight ??
+                0
+            );
+
+
+        // --------------------------------------------
+        // CREATE CARD
+        // --------------------------------------------
+
+        row.innerHTML = `
+
+            <div class="interpretation-number">
+                ${String(index + 1).padStart(2, "0")}
+            </div>
+
+            <div class="interpretation-content">
+
+                <p>
+                    ${escapeHtml(text)}
+                </p>
+
+            </div>
+
+            <div class="confidence">
+
+                <strong>
+                    ${confidence}%
+                </strong>
+
+                <span>
+                    AI WEIGHT
+                </span>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(row);
+
+    });
+
+
+    // ============================================
+    // VERDICT
+    // ============================================
+
+    document.getElementById("verdict").textContent =
+        data.verdict ||
+        "The AI has reached an inconclusive conclusion.";
+
+
+    // ============================================
+    // METADATA
+    // ============================================
+
+    document.getElementById("time").textContent =
+        data.time !== undefined
+            ? data.time
+            : "—";
+
+
+    document.getElementById("model").textContent =
+        data.model ||
+        "Ollama";
+
+
+    // ============================================
+    // SCROLL TO RESULTS
+    // ============================================
+
+    setTimeout(() => {
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
+
+}
+
+
+        // ============================================
+        // SCORE ANIMATION
+        // ============================================
+
+        function animateScore(target) {
+
+            const scoreElement =
+                document.getElementById(
+                    "score"
+                );
+
+
+            const fill =
+                document.getElementById(
+                    "scoreFill"
+                );
+
+
+            let current = 0;
+
+            const duration = 900;
+
+            const start =
+                performance.now();
+
+
+            function update(now) {
+
+                const progress =
+                    Math.min(
+                        (now - start) /
+                        duration,
+                        1
+                    );
+
+
+                const eased =
+                    1 -
+                    Math.pow(
+                        1 - progress,
+                        3
+                    );
+
+
+                current =
+                    Math.round(
+                        target * eased
+                    );
+
+
+                scoreElement.textContent =
+                    current;
+
+
+                fill.style.width =
+                    `${current}%`;
+
+
+                if (progress < 1) {
+
+                    requestAnimationFrame(
+                        update
+                    );
+
+                }
+
+            }
+
+
+            requestAnimationFrame(
+                update
+            );
+
+        }
+
+
+
+        // ============================================
+        // ERROR
+        // ============================================
+
+        function showError(message) {
+
+            const errorCard =
+                document.getElementById(
+                    "errorCard"
+                );
+
+
+            const errorText =
+                document.getElementById(
+                    "errorText"
+                );
+
+
+            errorText.textContent =
+                message;
+
+
+            errorCard.classList.remove(
+                "hidden"
+            );
+
+        }
+
+
+
+        function hideError() {
+
+            document
+                .getElementById(
+                    "errorCard"
+                )
+                .classList.add(
+                    "hidden"
+                );
+
+        }
+
+
+
+        // ============================================
+        // HTML SAFETY
+        // ============================================
+
+        function escapeHtml(text) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.textContent =
+                text;
+
+
+            return div.innerHTML;
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
