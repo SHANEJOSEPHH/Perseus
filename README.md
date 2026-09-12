@@ -60,31 +60,34 @@ Web Browser — Testing and interacting with the simulator]
 ### Implementation
 For Software:
 # Installation
-[git clone [https://github.com/SHANEJOSEPHH/Perseus]
-cd overthinking-simulator]
+Open Command Prompt and run the following commands:
+[git clone https://github.com/SHANEJOSEPHH/Perseus ]
+[cd overthinking-simulator]
 [pip install flask requests]
 [ollama pull qwen2.5-coder:3b]
 Start Ollama before starting the Flask application.
 
 # Run
-[python app.py]
-[http://127.0.0.1:5000]Open this address in a web browser and enter something to overthink.
+Open Command Prompt in the project folder and run:
+python app.py
+The Flask server will start. Open this address in your web browser:
+[http://127.0.0.1:5000]
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![main-interface.png](Main Interface)
+! main-interface.png (Main Interface)
 *The main OVERTHINKING.AI interface where users enter a situation they are overthinking*
 
-![ai-analysis.png](AI Analysis)
+! ai-analysis.png (AI Analysis)
 *The system generates five possible explanations using the local AI model and assigns an AI weight to each interpretation.*
 
-![final-verdict.png](Final Verdict)
+! final-verdict.png (Final Verdict)
 *The final screen displays the Overthinking Score and an evidence-based verdict based on the available information.*
 
 # Diagrams
-![Workflow](User Input➡️Flask Backend➡️Ollama Local AI➡️Qwen 2.5 Coder 3B➡️5 Possible Explanations➡️Evidence & Contradiction Validation➡️Overthinking Score➡️Final Verdict➡️Results displayed in the Web Interface)
+!Workflow➡️(User Input➡️Flask Backend➡️Ollama Local AI➡️Qwen 2.5 Coder 3B➡️5 Possible Explanations➡️Evidence & Contradiction Validation➡️Overthinking Score➡️Final Verdict➡️Results displayed in the Web Interface)
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
