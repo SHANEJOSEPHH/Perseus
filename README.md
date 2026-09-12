@@ -2,34 +2,62 @@
 
 
 
-# [Project Name] 🎯
+# [OVERTHINKING.AI] 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [PERSEUS]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
+- Team Lead: [Shane Joseph] - [AISAT]
 - Member 2: [Name] - [College]
 - Member 3: [Name] - [College]
 
 ### Project Description
-[2-3 lines about what your project does]
+[OVERTHINKING.AI is a local AI-powered simulator that analyzes everyday situations people tend to overthink. It generates multiple possible explanations, calculates an Overthinking Score, and gives a final evidence-based verdict.]
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+[Someone says "okay" instead of "okayyy", replies three hours later, sits somewhere else, or views your story without replying.
+
+Suddenly, your brain starts running a full investigation.
+
+Was something wrong? Were they angry? Did I do something? Are they avoiding me?
+
+We decided this completely unnecessary problem deserved completely unnecessary technology.]
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+[We built OVERTHINKING.AI.
+
+Users enter a situation they're overthinking, and the system uses a local AI model to:
+
+*Generate five possible explanations.
+*Consider the actual facts and timeline.
+*Avoid treating assumptions as facts.
+*Detect contradictions in AI-generated explanations.
+*Calculate an Overthinking Score.
+*Provide a final evidence-based verdict.
+
+Basically, we gave your overthinking a data-processing department.]
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- [Python — AI/backend logic and Flask server
+HTML — Webpage structure
+CSS — UI design and styling
+JavaScript — Frontend interaction and API communication]
+- [Flask — Python web framework for the backend and API
+Ollama — Local AI runtime for running the Qwen 2.5 Coder 3B model]
+- [Flask — Web server and API handling
+Requests — Communicates with the local Ollama AI API
+re (Regular Expressions) — Fact extraction and contradiction checking
+JSON — Handles AI responses and API data]
+- [Visual Studio Code — Code development and editing
+Ollama — Running the local AI model
+Git & GitHub — Version control and project hosting
+Command Prompt / Terminal — Installing dependencies and running the application
+Web Browser — Testing and interacting with the simulator]
 
 For Hardware:
 - [List main components]
@@ -39,26 +67,47 @@ For Hardware:
 ### Implementation
 For Software:
 # Installation
-[commands]
+[git clone [YOUR_GITHUB_REPOSITORY_LINK]
+cd overthinking-simulator]
+[pip install flask requests]
+[ollama pull qwen2.5-coder:3b]
+Start Ollama before starting the Flask application.
 
 # Run
-[commands]
+[python app.py]
+[http://127.0.0.1:5000]Open this address in a web browser and enter something to overthink.
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![screenshots/main-interface.png](Main Interface)
+*The main OVERTHINKING.AI interface where users enter a situation they are overthinking*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![screenshots/ai-analysis.png](AI Analysis)
+*The system generates five possible explanations using the local AI model and assigns an AI weight to each interpretation.*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![screenshots/final-verdict.png](Final Verdict)
+*The final screen displays the Overthinking Score and an evidence-based verdict based on the available information.*
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
+![Workflow](                            User Input
+    ↓
+Flask Backend
+    ↓
+Ollama Local AI
+    ↓
+Qwen 2.5 Coder 3B
+    ↓
+5 Possible Explanations
+    ↓
+Evidence & Contradiction Validation
+    ↓
+Overthinking Score
+    ↓
+Final Verdict
+    ↓
+Results displayed in the Web Interface)
 *Add caption explaining your workflow*
 
 For Hardware:
